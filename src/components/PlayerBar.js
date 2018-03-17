@@ -15,7 +15,7 @@ class PlayerBar extends Component {
                         <span className="ion-skip-forward"></span>
                     </button>
                     <section id="time-control">
-                        <div className="current-time">{this.props.currentTime}}</div>
+                        <div className="current-time">{this.props.convertTime}</div>
                         <input 
                             type="range" 
                             className="seek-bar" 
@@ -29,8 +29,17 @@ class PlayerBar extends Component {
                     </section>
                     <section id="volume-control">
                         <div className="icon ion-volume-low"></div>
-                        <input type="range" className="seek-bar" value="80" />
+                        <input type="range" 
+                        className="seek-bar" 
+                        value={this.props.songVolume} 
+                        max="1"
+                        min="0"
+                        step="0.01"
+                        onChange={this.props.handleVolumeChange}
+                        label={this.props.songVolume}
+                        />
                         <div className="icon ion-volume-high"></div>
+                        <div className="volumePercent">{Math.round((this.props.songVolume)*100)}%</div>
                     </section>
                 </section>
             </section>
